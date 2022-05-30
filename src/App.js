@@ -15,9 +15,11 @@ function App() {
   const fetchMoreData = () => {
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
+    setItems(items.concat(Array.from({length : 20})))
+    /*
     setTimeout(() => {
-      setItems(items.concat(Array.from({length : 20})))
-    }, 1500);
+      
+    }, 1500);*/
   };
 
   const style = {
