@@ -11,7 +11,19 @@ const style = {
   padding: 8
 };
 
-
+    /*
+    <InfiniteScroll
+      dataLength={items.length}
+      next={fetchMoreData}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+    >
+      {items.map((i, index) => (
+        <div style={style} key={index}>
+          div - #{index}
+        </div>
+      ))}
+    </InfiniteScroll>*/
 
 function App() {
   const [items, setItems] = useState(["bla", "bla"])
@@ -31,19 +43,7 @@ function App() {
 
     <div>
     <h1>demo: react-infinite-scroll-component</h1>
-    <hr />
-    <InfiniteScroll
-      dataLength={items.length}
-      next={fetchMoreData}
-      hasMore={true}
-      loader={<h4>Loading...</h4>}
-    >
-      {items.map((i, index) => (
-        <div style={style} key={index}>
-          div - #{index}
-        </div>
-      ))}
-    </InfiniteScroll>
+
   </div>
 
 
