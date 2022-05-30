@@ -4,34 +4,49 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import './App.css';
 import { useState } from 'react';
 
+const style = {
+  height: 30,
+  border: "1px solid green",
+  margin: 6,
+  padding: 8
+};
+
+
+
 function App() {
   const [items, setItems] = useState(["bla", "bla"])
+
+  const fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    setTimeout(() => {
+      setItems(items.concat(Array.from({length : 20})))
+    }, 1500);
+  };
+
+
+  
   return (
     <div className="App">
 
+    <div>
+    <h1>demo: react-infinite-scroll-component</h1>
+    <hr />
     <InfiniteScroll
-    dataLength={items.length} //This is important field to render the next data
-    //next={fetchData}
-    hasMore={true}
-    loader={<h4>Loading...</h4>}
-    endMessage={
-      <p style={{ textAlign: 'center' }}>
-        <b>Yay! You have seen it all</b>
-      </p>
-    }
-    // below props only if you need pull down functionality
-    refreshFunction={this.refresh}
-    pullDownToRefresh
-    pullDownToRefreshThreshold={50}
-    pullDownToRefreshContent={
-      <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-    }
-    releaseToRefreshContent={
-      <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-    }
-  >
-    {items}
-  </InfiniteScroll>
+      dataLength={items.length}
+      next={fetchMoreData}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+    >
+      {items.map((i, index) => (
+        <div style={style} key={index}>
+          div - #{index}
+        </div>
+      ))}
+    </InfiniteScroll>
+  </div>
+
+
 
     </div>
   );
